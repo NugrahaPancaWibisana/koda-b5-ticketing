@@ -1,5 +1,5 @@
-import { SectionContent } from "../ui/Section";
-import { Card, CardContent, CardDesc, CardHeader, CardTitle } from "../ui/Card";
+import { SectionContent } from "../../ui/Section";
+import { Card, CardContent, CardDesc, CardHeader, CardTitle } from "../../ui/Card";
 
 export default function ChooseUsSection() {
   return (

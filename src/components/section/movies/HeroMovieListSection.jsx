@@ -1,5 +1,4 @@
-import { SectionContent } from "../ui/Section";
-import background from "../../assets/background.png";
+import { SectionContent } from "../../ui/Section";
 
 export default function HeroMovieListSection() {
   return (
@@ -7,7 +6,7 @@ export default function HeroMovieListSection() {
       <div className='w-full h-[462px] flex justify-start items-center relative'>
         <img
           className='w-full h-[462px] object-cover absolute -z-20'
-          src={background}
+          src='/background.png'
           alt='bg'
         />
         <div className="w-full h-[462px] absolute -z-10 bg-black/60"></div>

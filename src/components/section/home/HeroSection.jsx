@@ -1,5 +1,5 @@
-import test from "../../assets/test.png";
-import { SectionContent } from "../ui/Section";
+import test from "../../../assets/test.png";
+import { SectionContent } from "../../ui/Section";
 
 export default function HeroSection() {
   return (

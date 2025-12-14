@@ -5,8 +5,8 @@ import Footer from "./Footer";
 export default function MainLayout() {
   return (
     <>
-      <Navbar />  
-      <main className='pt-[140px] md:pt-0 font-mulish'>
+      <Navbar />
+      <main className='grid grid-cols-1 pt-[140px] md:pt-0 font-mulish'>
         <Outlet />
       </main>
       <Footer />

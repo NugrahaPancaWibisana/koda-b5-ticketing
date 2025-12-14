@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
-import { SectionContent } from "../ui/Section";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/Card";
+import { SectionContent } from "../../ui/Section";
 
 export default function SubscibeSection() {
   return (

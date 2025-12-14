@@ -1,4 +1,4 @@
-import HeroMovieListSection from "../../components/section/HeroMovieListSection";
+import HeroMovieListSection from "../../components/section/movies/HeroMovieListSection";
 
 export default function MovieList() {
   return (

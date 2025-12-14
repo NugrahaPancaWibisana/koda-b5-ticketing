@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
-import { Carousel, CarouselItem } from "../ui/Carousel";
-import { SectionContent } from "../ui/Section";
-import test from "../../assets/test.png";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/Card";
+import { Carousel, CarouselItem } from "../../ui/Carousel";
+import { SectionContent } from "../../ui/Section";
+import test from "../../../assets/test.png";
 
 export default function MovieSection() {
   return (
