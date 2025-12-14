@@ -4,6 +4,7 @@ import Home from "./pages/guest/Home";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import MovieList from "./pages/guest/MovieList";
+import AuthLayout from "./components/layouts/AuthLayout";
 
 export default function Router() {
   return (
@@ -16,8 +17,10 @@ export default function Router() {
           </Route>
         </Route>
 
-        <Route path='signin' element={<SignIn />} />
-        <Route path='signup' element={<SignUp />} />
+        <Route element={<AuthLayout />}>
+          <Route path='signin' element={<SignIn />} />
+          <Route path='signup' element={<SignUp />} />
+        </Route>
       </Route>
     </Routes>
   );
