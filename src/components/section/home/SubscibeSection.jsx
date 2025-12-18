@@ -1,34 +1,36 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/Card";
-import { SectionContent } from "../../ui/Section";
-
 export default function SubscibeSection() {
   return (
-    <SectionContent className='lg:px-[130px] md:text-start items-start mt-20'>
-      <Card className='bg-primary rounded-2xl min-h-[538px] relative px-9 md:px-52 overflow-hidden'>
-        <CardHeader className="justify-center items-center">
-          <CardTitle className="text-center text-white text-3xl md:text-7xl">Subscribe to our newsletter</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form className='w-full flex flex-col md:flex-row gap-3'>
+    <section className="mt-20 flex flex-col items-start justify-start gap-10 md:text-start">
+      <article className="bg-primary relative grid min-h-[538px] w-full overflow-hidden rounded-2xl px-9 md:px-10 lg:px-52">
+        <header className="flex items-center justify-center">
+          <h4 className="text-center text-3xl font-bold text-white md:text-7xl">
+            Subscribe to our newsletter
+          </h4>
+        </header>
+        <section className="flex w-full flex-col justify-center gap-4 md:justify-start">
+          <form className="flex w-full flex-col gap-3 md:flex-row">
             <input
-              className='w-full h-16 pl-5 bg-white/10 outline-0 border border-white text-white rounded-md'
-              type='text'
-              name='name'
-              placeholder='First name'
+              className="h-16 w-full rounded-md border border-white bg-white/10 pl-5 text-white outline-0"
+              type="text"
+              name="name"
+              placeholder="First name"
             />
             <input
-              className='w-full h-16 pl-5 bg-white/10 outline-0 border border-white text-white rounded-md'
-              type='email'
-              name='email'
-              placeholder='Email address'
+              className="h-16 w-full rounded-md border border-white bg-white/10 pl-5 text-white outline-0"
+              type="email"
+              name="email"
+              placeholder="Email address"
             />
-            <button className='w-full h-16 bg-white rounded-md text-primary font-bold' type='button'>
+            <button
+              className="text-primary h-16 w-full rounded-md bg-white font-bold"
+              type="button"
+            >
               Subscribe Now
             </button>
           </form>
-          <span className='block w-[200px] h-[200px] border-8 border-white rounded-full absolute -bottom-24 -right-24'></span>
-        </CardContent>
-      </Card>
-    </SectionContent>
+          <span className="absolute -right-24 -bottom-24 block h-[200px] w-[200px] rounded-full border-8 border-white"></span>
+        </section>
+      </article>
+    </section>
   );
 }

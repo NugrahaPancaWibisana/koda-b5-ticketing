@@ -8,7 +8,7 @@ import twitter from "../../assets/twitter.svg";
 
 export default function Footer() {
   return (
-    <footer className='w-full flex flex-col md:flex-row md:justify-between gap-12 px-6 md:px-[130px] mt-16 pt-16 pb-52 relative'>
+    <footer className='w-full flex flex-col md:flex-row md:justify-between gap-12 px-6 md:px-main mt-16 pt-16 pb-20 md:pb-52 relative'>
       <div className='flex flex-col gap-5 text-sm text-tertiary'>
         <svg
           width='93'

@@ -21,7 +21,7 @@ export default function Navbar() {
     <>
       {user.fetchStatus.users.logout.isLoading && <Loader />}
       <header className="font-mulish fixed top-0 z-10 flex h-[91px] w-full items-center bg-white">
-        <nav className="flex w-full items-center justify-between md:px-[30px] lg:px-[130px]">
+        <nav className="flex w-full items-center justify-between md:px-[30px] lg:px-main">
           <div className="flex w-full items-center justify-between px-6 md:w-fit md:px-0">
             <a to="/">
               <svg

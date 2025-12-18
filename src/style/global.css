@@ -9,6 +9,9 @@
 
   /* Font */
   --font-mulish: "Mulish", sans-serif;
+
+  /* Spacing */
+  --spacing-main: 130px;
 }
 
 @layer utilities {

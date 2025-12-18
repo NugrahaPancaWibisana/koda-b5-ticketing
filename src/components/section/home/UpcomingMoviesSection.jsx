@@ -1,247 +1,120 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/Card";
-import { Carousel, CarouselItem } from "../../ui/Carousel";
-import { SectionContent } from "../../ui/Section";
-import test from "../../../assets/test.png";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import MovieCard from "../../ui/MovieCard";
+import { movieActions } from "../../../redux/slices/movie.slice";
 
 export default function UpcomingMoviesSection() {
+  const movie = useSelector((state) => state.movie.movies);
+  const dispatch = useDispatch();
+  // const [activeIndex, setActiveIndex] = useState(null);
+  const [prev, setprev] = useState(0);
+
+  useEffect(() => {
+    dispatch(movieActions.getUpcoming());
+    // dispatch(movieActions.getMovieGenres());
+  }, [dispatch]);
+
   return (
-    <SectionContent className='lg:px-[130px] md:text-start items-start mt-20'>
-      <div className='flex md:justify-between justify-center items-center w-full'>
+    <section className="mt-20 flex flex-col items-start justify-start gap-10 text-center md:text-start">
+      <div className="flex w-full items-center justify-center md:justify-between">
         <div>
-          <h1 className='text-primary font-bold text-lg leading-8 tracking-[0.75px]'>
+          <h1 className="text-primary text-lg leading-8 font-bold tracking-[0.75px]">
             UPCOMING MOVIES
           </h1>
-          <h2 className='text-secondary font-normal text-[32px] leading-11 tracking-[1px]'>
+          <h2 className="text-secondary text-[32px] leading-11 font-normal tracking-[1px]">
             Exciting Movie Coming Soon
           </h2>
         </div>
-        <div className='md:flex gap-2 hidden'>
-          <button className='p-5 rotate-180 bg-tertiary rounded-full'>
+        <div className="hidden gap-2 md:flex">
+          <button
+            className="bg-tertiary rotate-180 rounded-full p-5"
+            onClick={() => setprev(prev === 0 ? 0 : prev - 4)}
+          >
             <svg
-              className='stroke-white'
-              width='20'
-              height='20'
-              viewBox='0 0 20 20'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
+              className="stroke-white"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d='M17.5 10L2.5 10'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                d="M17.5 10L2.5 10"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
-                d='M12.5 5L17.5 10L12.5 15'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                d="M12.5 5L17.5 10L12.5 15"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
-          <button className='p-5 bg-primary rounded-full'>
+          <button
+            className="bg-primary rounded-full p-5"
+            onClick={() => setprev(prev === 16 ? 16 : prev + 4)}
+          >
             <svg
-              className='stroke-white'
-              width='20'
-              height='20'
-              viewBox='0 0 20 20'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
+              className="stroke-white"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d='M17.5 10L2.5 10'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                d="M17.5 10L2.5 10"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
-                d='M12.5 5L17.5 10L12.5 15'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                d="M12.5 5L17.5 10L12.5 15"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
         </div>
       </div>
 
-      <div className='md:grid grid-cols-4 gap-5 hidden'>
-        <Card className='gap-5'>
-          <CardHeader>
-            <img className='min-w-48 rounded-md' src={test} alt='test' />
-          </CardHeader>
-          <CardContent className='flex-col items-start gap-2'>
-            <CardTitle className='text-lg'>John Wick</CardTitle>
-            <div className='flex gap-1'>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className='gap-5'>
-          <CardHeader>
-            <img className='min-w-48 rounded-md' src={test} alt='test' />
-          </CardHeader>
-          <CardContent className='flex-col items-start gap-2'>
-            <CardTitle className='text-lg'>John Wick</CardTitle>
-            <div className='flex gap-1'>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className='gap-5'>
-          <CardHeader>
-            <img className='min-w-48 rounded-md' src={test} alt='test' />
-          </CardHeader>
-          <CardContent className='flex-col items-start gap-2'>
-            <CardTitle className='text-lg'>John Wick</CardTitle>
-            <div className='flex gap-1'>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className='gap-5'>
-          <CardHeader>
-            <img className='min-w-48 rounded-md' src={test} alt='test' />
-          </CardHeader>
-          <CardContent className='flex-col items-start gap-2'>
-            <CardTitle className='text-lg'>John Wick</CardTitle>
-            <div className='flex gap-1'>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-              <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                Action
-              </span>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="hidden w-full grid-cols-4 gap-5 md:grid">
+        {movie.upcoming.slice(prev, prev + 4).map((value, idx) => {
+          return (
+            <MovieCard
+              key={idx}
+              img={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
+              title={value.original_title}
+              genre={value.genre_ids.map(
+                (id) => movie.genres.find((v) => v.id === id)["name"],
+              )}
+              href={`movies/${value.id}/${value.original_title.toLowerCase().split(" ").join("-")}`}
+            />
+          );
+        })}
       </div>
 
-      <Carousel className='md:hidden'>
-        <CarouselItem>
-          <Card className='gap-5'>
-            <CardHeader>
-              <img className='min-w-60 rounded-md' src={test} alt='test' />
-            </CardHeader>
-            <CardContent className='flex-col items-start gap-2'>
-              <CardTitle className='text-lg'>John Wick</CardTitle>
-              <div className='flex gap-1'>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </CarouselItem>
-        <CarouselItem>
-          <Card className='gap-5'>
-            <CardHeader>
-              <img className='min-w-60 rounded-md' src={test} alt='test' />
-            </CardHeader>
-            <CardContent className='flex-col items-start gap-2'>
-              <CardTitle className='text-lg'>John Wick</CardTitle>
-              <div className='flex gap-1'>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </CarouselItem>
-        <CarouselItem>
-          <Card className='gap-5'>
-            <CardHeader>
-              <img className='min-w-60 rounded-md' src={test} alt='test' />
-            </CardHeader>
-            <CardContent className='flex-col items-start gap-2'>
-              <CardTitle className='text-lg'>John Wick</CardTitle>
-              <div className='flex gap-1'>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </CarouselItem>
-        <CarouselItem>
-          <Card className='gap-5'>
-            <CardHeader>
-              <img className='min-w-60 rounded-md' src={test} alt='test' />
-            </CardHeader>
-            <CardContent className='flex-col items-start gap-2'>
-              <CardTitle className='text-lg'>John Wick</CardTitle>
-              <div className='flex gap-1'>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </CarouselItem>
-        <CarouselItem>
-          <Card className='gap-5'>
-            <CardHeader>
-              <img className='min-w-60 rounded-md' src={test} alt='test' />
-            </CardHeader>
-            <CardContent className='flex-col items-start gap-2'>
-              <CardTitle className='text-lg'>John Wick</CardTitle>
-              <div className='flex gap-1'>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </CarouselItem>
-        <CarouselItem>
-          <Card className='gap-5'>
-            <CardHeader>
-              <img className='min-w-60 rounded-md' src={test} alt='test' />
-            </CardHeader>
-            <CardContent className='flex-col items-start gap-2'>
-              <CardTitle className='text-lg'>John Wick</CardTitle>
-              <div className='flex gap-1'>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-                <span className='px-3 py-1 bg-tertiary/10 text-tertiary rounded-full'>
-                  Action
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        </CarouselItem>
-      </Carousel>
-    </SectionContent>
+      <div className="no-scrollbar flex w-full snap-x gap-4 overflow-x-auto md:hidden">
+        {movie.upcoming.map((value, idx) => {
+          return (
+            <MovieCard
+              key={idx}
+              img={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
+              title={value.original_title}
+              genre={value.genre_ids.map(
+                (id) => movie.genres.find((v) => v.id === id).name,
+              )}
+              href={`movies/${value.id}`}
+              // isActive={activeIndex === idx}
+              // onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}
+            />
+          );
+        })}
+      </div>
+    </section>
   );
 }

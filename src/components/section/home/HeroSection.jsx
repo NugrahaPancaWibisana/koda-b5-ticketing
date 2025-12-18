@@ -1,46 +1,74 @@
-import test from "../../../assets/test.png";
-import { SectionContent } from "../../ui/Section";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { movieActions } from "../../../redux/slices/movie.slice";
 
 export default function HeroSection() {
+  const movie = useSelector((state) => state.movie.movies.now_playing);
+  const dispatch = useDispatch();  
+
+  useEffect(() => {
+    dispatch(movieActions.getNowPlaying());
+  }, [dispatch]);
   return (
-    <SectionContent className='md:flex-row lg:px-[130px] md:justify-between md:min-h-dvh'>
-      <div className='flex flex-col md:items-start gap-5'>
-        <h1 className='text-primary font-bold text-lg leading-8 tracking-[0.75px]'>
+    <section className="flex flex-col justify-between gap-5 md:min-h-dvh md:flex-row md:items-center md:gap-10 lg:gap-20">
+      <div className="flex flex-col gap-4 text-center md:flex-1 md:gap-8 md:text-left">
+        <h2 className="text-primary text-lg leading-8 font-bold tracking-[0.75px]">
           MOVIE TICKET PURCHASES #1 IN INDONESIA
-        </h1>
-        <h2 className='text-secondary font-normal text-[32px] md:text-[38px] xl:text-5xl md:text-left leading-[70px] md:leading-14 tracking-[1px] md:w-[538px] xl:w-[638px]'>
-          Experience the Magic of Cinema: Book Your Tickets Today
         </h2>
-        <p className='text-tertiary'>
+        <p className="text-secondary text-[32px] font-normal tracking-[1px] md:text-left md:text-[38px] md:leading-14 xl:text-5xl">
+          Experience the Magic of Cinema: Book Your Tickets Today
+        </p>
+        <p className="text-tertiary">
           Sign up and get the ticket with a lot of discount
         </p>
       </div>
-      <div className='flex gap-2 md:max-h-[436px]'>
-        <div className='flex flex-col gap-2'>
-          <img
-            className='rounded-t-3xl object-cover object-top h-[125px] md:min-h-[70px] md:min-w-[117px] lg:min-h-[120px] lg:min-w-[167px] xl:min-h-[220px] xl:min-w-[267px]'
-            src={test}
-            alt='test image'
-          />
-          <img
-            className='rounded-b-3xl object-cover object-top flex-1 md:max-h-[150px] lg:max-h-[200px] xl:max-h-[300px] md:flex-0 md:w-full'
-            src={test}
-            alt='test image'
-          />
-        </div>
-        <div className='flex flex-col gap-2'>
-          <img
-            className='rounded-t-3xl object-cover object-top flex-1 md:max-h-[150px] lg:max-h-[200px] xl:max-h-[300px] md:flex-0 md:w-full'
-            src={test}
-            alt='test image'
-          />
-          <img
-            className='rounded-b-3xl object-cover object-top h-[125px] md:min-h-[70px] md:min-w-[117px] lg:min-h-[120px] lg:min-w-[167px] xl:min-h-[220px] xl:min-w-[267px]'
-            src={test}
-            alt='test image'
-          />
+      <div className="flex-1 md:pl-15 lg:pl-30">
+        <div className="grid grid-cols-2 grid-rows-[150px_60px_150px] gap-3 md:grid-rows-[140px_60px_140px] lg:grid-rows-[180px_100px_180px]">
+          {movie.slice(0, 4).map((value, idx) => {
+            if (idx === 0) {
+              return (
+                <img
+                  key={idx}
+                  className="h-full w-full rounded-t-3xl object-cover"
+                  src={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
+                  alt={value.original_title}
+                />
+              );
+            }
+            if (idx === 1) {
+              return (
+                <img
+                  key={idx}
+                  className="row-span-2 h-full w-full rounded-t-3xl object-cover"
+                  src={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
+                  alt={value.original_title}
+                />
+              );
+            }
+            if (idx === 2) {
+              return (
+                <img
+                  key={idx}
+                  className="row-span-2 h-full w-full rounded-b-3xl object-cover"
+                  src={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
+                  alt={value.original_title}
+                />
+              );
+            }
+            if (idx === 3) {
+              return (
+                <img
+                  key={idx}
+                  className="h-full w-full rounded-b-3xl object-cover"
+                  src={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
+                  alt={value.original_title}
+                />
+              );
+            }
+          })}
         </div>
       </div>
-    </SectionContent>
+    </section>
   );
 }

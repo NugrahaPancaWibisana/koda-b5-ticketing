@@ -6,14 +6,12 @@ import UpcomingMoviesSection from "../../components/section/home/UpcomingMoviesS
 
 export default function Home() {
   return (
-    <>
-      <div className='px-6 md:px-0'>
-        <HeroSection />
-        <ChooseUsSection />
-        <MovieSection />
-        <UpcomingMoviesSection />
-        <SubscibeSection />
-      </div>
-    </>
+    <div className="px-main">
+      <HeroSection />
+      <ChooseUsSection />
+      <MovieSection />
+      <UpcomingMoviesSection />
+      <SubscibeSection />
+    </div>
   );
 }
