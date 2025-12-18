@@ -14,11 +14,7 @@ export default function MovieCard({
       className="grid h-fit min-w-48 snap-start gap-5 text-left md:w-full"
     >
       <header className="group relative overflow-hidden rounded-md">
-        <img
-          className="min-w-48 rounded-md md:min-w-[264px]"
-          src={img}
-          alt={title}
-        />
+        <img className="w-full rounded-md" src={img} alt={title} />
 
         <div
           className={`absolute inset-0 flex-col items-center justify-center gap-4 bg-black/70 px-10 text-center ${isActive ? "flex" : "hidden"} md:hidden md:group-hover:flex`}

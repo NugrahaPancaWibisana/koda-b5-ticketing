@@ -8,7 +8,7 @@ import { Link } from "react-router";
 export default function MovieSection() {
   const movie = useSelector((state) => state.movie.movies);
   const dispatch = useDispatch();
-  // const [activeIndex, setActiveIndex] = useState(null);  
+  // const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
     dispatch(movieActions.getNowPlaying());
@@ -31,7 +31,9 @@ export default function MovieSection() {
               key={idx}
               img={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
               title={value.original_title}
-              genre={value.genre_ids.map((id) => movie.genres.find((v) => v.id === id).name)}
+              genre={value.genre_ids.map(
+                (id) => movie.genres.find((v) => v.id === id).name,
+              )}
               href={`movies/${value.id}/${value.original_title.toLowerCase().split(" ").join("-")}`}
             />
           );
@@ -45,7 +47,9 @@ export default function MovieSection() {
               key={idx}
               img={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
               title={value.original_title}
-              genre={value.genre_ids.map((id) => movie.genres.find((v) => v.id === id).name)}
+              genre={value.genre_ids.map(
+                (id) => movie.genres.find((v) => v.id === id).name,
+              )}
               href={`movies/${value.id}`}
               // isActive={activeIndex === idx}
               // onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}

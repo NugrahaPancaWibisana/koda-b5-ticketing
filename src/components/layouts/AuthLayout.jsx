@@ -10,7 +10,7 @@ export default function AuthLayout() {
     <>
       {userState.fetchStatus.users.signin.isLoading && <Loader />}
       {userState.fetchStatus.users.signup.isLoading && <Loader />}
-      <main className='font-mulish bg-[url("/background.png")] bg-center bg-cover relative z-0 before:content-[""] before:absolute before:bg-black/65 before:inset-0 before:-z-10'>
+      <main className='font-mulish relative z-0 bg-[url("/background.png")] bg-cover bg-center before:absolute before:inset-0 before:-z-10 before:bg-black/65 before:content-[""]'>
         <Outlet />
       </main>
     </>

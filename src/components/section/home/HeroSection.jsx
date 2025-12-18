@@ -5,7 +5,7 @@ import { movieActions } from "../../../redux/slices/movie.slice";
 
 export default function HeroSection() {
   const movie = useSelector((state) => state.movie.movies.now_playing);
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(movieActions.getNowPlaying());

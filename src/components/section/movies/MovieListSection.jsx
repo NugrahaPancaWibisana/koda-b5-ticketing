@@ -33,7 +33,7 @@ export default function MovieListSection() {
   }, [dispatch]);
 
   return (
-    <section className="md:mt-10 px-main">
+    <section className="px-main md:mt-10">
       <form className="relative flex gap-5">
         <div>
           <label className="mb-3 block" htmlFor="search">

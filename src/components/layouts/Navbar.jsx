@@ -20,8 +20,12 @@ export default function Navbar() {
   return (
     <>
       {user.fetchStatus.users.logout.isLoading && <Loader />}
-      <header className="font-mulish fixed top-0 z-10 flex h-[91px] w-full items-center bg-white">
-        <nav className="flex w-full items-center justify-between md:px-[30px] lg:px-main">
+      <span
+        onClick={() => setIsOpen(!isOpen)}
+        className={`fixed inset-0 z-0 bg-black/60 ${isOpen ? "block" : "hidden"} md:hidden`}
+      ></span>
+      <header className="font-mulish z-50 fixed top-0 flex h-[91px] w-full items-center bg-white">
+        <nav className="lg:px-main flex w-full items-center justify-between md:px-[30px]">
           <div className="flex w-full items-center justify-between px-6 md:w-fit md:px-0">
             <a to="/">
               <svg
@@ -69,7 +73,7 @@ export default function Navbar() {
           <div
             id="navigation"
             className={`${
-              isOpen ? "translate-0" : "-translate-x-full md:hidden"
+              isOpen ? "translate-0" : "-translate-x-full"
             } absolute top-0 -z-20 flex h-dvh w-4/5 flex-col justify-between bg-white px-6 pt-[91px] pb-10 transition-all md:hidden`}
           >
             <ul className="flex flex-col gap-2">

@@ -6,11 +6,11 @@ import UpcomingMoviesSection from "../../components/section/home/UpcomingMoviesS
 
 export default function Home() {
   return (
-    <div className="px-main">
+    <div className="lg:px-main px-6 md:px-7.5">
       <HeroSection />
       <ChooseUsSection />
-      <MovieSection />
-      <UpcomingMoviesSection />
+      {/* <MovieSection />
+      <UpcomingMoviesSection /> */}
       <SubscibeSection />
     </div>
   );

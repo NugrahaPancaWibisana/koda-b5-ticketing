@@ -1,7 +1,7 @@
 export default function SubscibeSection() {
   return (
     <section className="mt-20 flex flex-col items-start justify-start gap-10 md:text-start">
-      <article className="bg-primary relative grid min-h-[538px] w-full overflow-hidden rounded-2xl px-9 md:px-10 lg:px-52">
+      <article className="bg-primary relative -z-10 grid min-h-[538px] w-full overflow-hidden rounded-2xl px-9 md:px-10 lg:px-52">
         <header className="flex items-center justify-center">
           <h4 className="text-center text-3xl font-bold text-white md:text-7xl">
             Subscribe to our newsletter
