@@ -25,7 +25,7 @@ export default function SignUp() {
     email.value !== "" && password.value !== "" && terms.value;
 
   useEffect(() => {
-    if (state.fetchStatus.users.signup.isSuccess) {
+    if (state.fetchStatus.signup.isSuccess) {
       navigate("/signin");
     }
   }, [navigate, state]);

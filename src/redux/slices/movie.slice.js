@@ -54,22 +54,20 @@ const initialState = {
     upcoming: [],
   },
   fetchStatus: {
-    movies: {
-      now_playing: {
-        isLoading: false,
-        isSuccess: false,
-        isFailed: false,
-      },
-      genres: {
-        isLoading: false,
-        isSuccess: false,
-        isFailed: false,
-      },
-      upcoming: {
-        isLoading: false,
-        isSuccess: false,
-        isFailed: false,
-      },
+    now_playing: {
+      isLoading: false,
+      isSuccess: false,
+      isFailed: false,
+    },
+    genres: {
+      isLoading: false,
+      isSuccess: false,
+      isFailed: false,
+    },
+    upcoming: {
+      isLoading: false,
+      isSuccess: false,
+      isFailed: false,
     },
   },
   errors: {
@@ -86,87 +84,63 @@ const movieSlice = createSlice({
     builder
       .addAsyncThunk(getNowPlaying, {
         pending: (prevState) => {
-          prevState.fetchStatus.movies.now_playing = {
-            isLoading: true,
-            isSuccess: false,
-            isFailed: false,
-          };
+          prevState.fetchStatus.now_playing.isLoading = true;
+          prevState.fetchStatus.now_playing.isSuccess = false;
+          prevState.fetchStatus.now_playing.isFailed = false;
 
           prevState.errors.now_playing = null;
         },
         fulfilled: (prevState, { payload }) => {
-          prevState.fetchStatus.movies.now_playing = {
-            isLoading: false,
-            isSuccess: true,
-            // isFailed: false,
-          };
+          prevState.fetchStatus.now_playing.isLoading = false;
+          prevState.fetchStatus.now_playing.isSuccess = true;
 
           prevState.movies.now_playing = payload;
         },
         rejected: (prevState, { payload }) => {
-          prevState.fetchStatus.movies.now_playing = {
-            isLoading: false,
-            // isSuccess: false,
-            isFailed: true,
-          };
+          prevState.fetchStatus.now_playing.isLoading = false;
+          prevState.fetchStatus.now_playing.isFailed = true;
 
           prevState.errors.now_playing = payload;
         },
       })
       .addAsyncThunk(getMovieGenres, {
         pending: (prevState) => {
-          prevState.fetchStatus.movies.genres = {
-            isLoading: true,
-            isSuccess: false,
-            isFailed: false,
-          };
+          prevState.fetchStatus.genres.isLoading = true;
+          prevState.fetchStatus.genres.isSuccess = false;
+          prevState.fetchStatus.genres.isFailed = false;
 
           prevState.errors.genres = null;
         },
         fulfilled: (prevState, { payload }) => {
-          prevState.fetchStatus.movies.genres = {
-            isLoading: false,
-            isSuccess: true,
-            isFailed: false,
-          };
+          prevState.fetchStatus.genres.isLoading = false;
+          prevState.fetchStatus.genres.isSuccess = true;
 
           prevState.movies.genres = payload.genres;
         },
         rejected: (prevState, { payload }) => {
-          prevState.fetchStatus.movies.genres = {
-            isLoading: false,
-            isSuccess: false,
-            isFailed: true,
-          };
+          prevState.fetchStatus.genres.isLoading = false;
+          prevState.fetchStatus.genres.isFailed = true;
 
           prevState.errors.genres = payload;
         },
       })
       .addAsyncThunk(getUpcoming, {
         pending: (prevState) => {
-          prevState.fetchStatus.movies.upcoming = {
-            isLoading: true,
-            isSuccess: false,
-            isFailed: false,
-          };
+          prevState.fetchStatus.upcoming.isLoading = true;
+          prevState.fetchStatus.upcoming.isSuccess = false;
+          prevState.fetchStatus.upcoming.isFailed = false;
 
           prevState.errors.upcoming = null;
         },
         fulfilled: (prevState, { payload }) => {
-          prevState.fetchStatus.movies.upcoming = {
-            isLoading: false,
-            isSuccess: true,
-            isFailed: false,
-          };
+          prevState.fetchStatus.upcoming.isLoading = false;
+          prevState.fetchStatus.upcoming.isSuccess = true;
 
           prevState.movies.upcoming = payload;
         },
         rejected: (prevState, { payload }) => {
-          prevState.fetchStatus.movies.upcoming = {
-            isLoading: false,
-            isSuccess: false,
-            isFailed: true,
-          };
+          prevState.fetchStatus.upcoming.isLoading = false;
+          prevState.fetchStatus.upcoming.isFailed = true;
 
           prevState.errors.upcoming = payload;
         },

@@ -8,8 +8,8 @@ export default function AuthLayout() {
 
   return (
     <>
-      {userState.fetchStatus.users.signin.isLoading && <Loader />}
-      {userState.fetchStatus.users.signup.isLoading && <Loader />}
+      {userState.fetchStatus.signin.isLoading && <Loader />}
+      {userState.fetchStatus.signup.isLoading && <Loader />}
       <main className='font-mulish relative z-0 bg-[url("/background.png")] bg-cover bg-center before:absolute before:inset-0 before:-z-10 before:bg-black/65 before:content-[""]'>
         <Outlet />
       </main>

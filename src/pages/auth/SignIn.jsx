@@ -28,7 +28,7 @@ export default function SignIn() {
     password.isValid;
 
   useEffect(() => {
-    if (state.fetchStatus.users.signin.isSuccess) {
+    if (state.fetchStatus.signin.isSuccess) {
       navigate("/", { replace: true });
     }
   }, [navigate, state]);

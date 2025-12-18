@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <>
-      {user.fetchStatus.users.logout.isLoading && <Loader />}
+      {user.fetchStatus.logout.isLoading && <Loader />}
       <span
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed inset-0 z-0 bg-black/60 ${isOpen ? "block" : "hidden"} md:hidden`}
