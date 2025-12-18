@@ -21,7 +21,11 @@ export default function SignIn() {
   };
   const [data, setData] = useState({});
 
-  const isFormValid = email.value !== "" && password.value !== "";
+  const isFormValid =
+    email.value !== "" &&
+    email.isValid &&
+    password.value !== "" &&
+    password.isValid;
 
   useEffect(() => {
     if (state.fetchStatus.users.signin.isSuccess) {

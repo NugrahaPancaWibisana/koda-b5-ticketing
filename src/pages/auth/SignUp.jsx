@@ -43,8 +43,8 @@ export default function SignUp() {
 
     Object.assign(newUser, {
       id: state.nextId,
-      image: "/",
-      first_name: "",
+      image: "/user.png",
+      first_name: "User",
       last_name: "",
       email: email.value,
       password: password.value,

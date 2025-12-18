@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
-import Loader from "../ui/Loader";
 import { useSelector } from "react-redux";
+
+import Loader from "../ui/Loader";
 
 export default function AuthLayout() {
   const userState = useSelector((state) => state.user);

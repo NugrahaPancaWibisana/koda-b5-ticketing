@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { userApi } from "../../api/user.api";
+import { userApi } from "../../api/getUserData";
 
 const addUserThunk = createAsyncThunk(
   "user/addUser",
@@ -13,7 +13,7 @@ const addUserThunk = createAsyncThunk(
       console.log(error);
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 const userSignInThunk = createAsyncThunk(
@@ -24,19 +24,19 @@ const userSignInThunk = createAsyncThunk(
         const { users } = getState().user;
 
         const isExist = users.some(
-          (u) => u.email === data.email && u.password === data.password
+          (u) => u.email === data.email && u.password === data.password,
         );
 
         if (!isExist) {
           return {
             ok: false,
             data: {},
-            error: "Username or password is invalid",
+            error: "Email or password is invalid",
           };
         }
 
         const user = users.find(
-          (u) => u.email === data.email && u.password === data.password
+          (u) => u.email === data.email && u.password === data.password,
         );
 
         return { ok: true, data: user, error: null };
@@ -46,7 +46,7 @@ const userSignInThunk = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 const userLogoutThunk = createAsyncThunk(
@@ -60,17 +60,17 @@ const userLogoutThunk = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error);
     }
-  }
+  },
 );
 
 const initialState = {
   users: [
     {
       id: 1,
-      image: "/user.png",
+      image: "https://avatars.githubusercontent.com/u/111733086?v=4",
       first_name: "Nugraha Panca",
       last_name: "Wibisana",
-      email: "nugrahapancawibisana@gmail.com",
+      email: "npws@gmail.com",
       password: "wibisana",
       phone_number: "+62 857-1261-9452",
     },
@@ -108,98 +108,78 @@ const userSlice = createSlice({
     return builder
       .addAsyncThunk(addUserThunk, {
         pending: (prevState) => {
-          Object.assign(prevState.fetchStatus.users.signup, {
-            isLoading: true,
-            isSuccess: false,
-            isFailed: false,
-          });
+          prevState.fetchStatus.users.signup.isLoading = true;
+          prevState.fetchStatus.users.signup.isSuccess = false;
+          prevState.fetchStatus.users.signup.isFailed = false;
 
           prevState.errors.user = null;
         },
         fulfilled: (prevState, { payload }) => {
-          Object.assign(prevState.fetchStatus.users.signup, {
-            isLoading: false,
-            isSuccess: true,
-            isFailed: false,
-          });
+          prevState.fetchStatus.users.signup.isLoading = false;
+          prevState.fetchStatus.users.signup.isSuccess = true;
+          prevState.fetchStatus.users.signup.isFailed = false;
 
           prevState.users.push(payload);
           prevState.nextId++;
         },
         rejected: (prevState, { payload }) => {
-          Object.assign(prevState.fetchStatus.users.signup, {
-            isLoading: false,
-            isSuccess: false,
-            isFailed: true,
-          });
+          prevState.fetchStatus.users.signup.isLoading = false;
+          prevState.fetchStatus.users.signup.isSuccess = false;
+          prevState.fetchStatus.users.signup.isFailed = true;
 
           prevState.errors.user = payload;
         },
       })
       .addAsyncThunk(userSignInThunk, {
         pending: (prevState) => {
-          Object.assign(prevState.fetchStatus.users.signin, {
-            isLoading: true,
-            isSuccess: false,
-            isFailed: false,
-          });
+          prevState.fetchStatus.users.signin.isLoading = true;
+          prevState.fetchStatus.users.signin.isSuccess = false;
+          prevState.fetchStatus.users.signin.isFailed = false;
 
           prevState.errors.user = null;
         },
         fulfilled: (prevState, { payload }) => {
-          Object.assign(prevState.fetchStatus.users.signin, {
-            isLoading: false,
-            isSuccess: true,
-            isFailed: false,
-          });
+          prevState.fetchStatus.users.signin.isLoading = false;
+          prevState.fetchStatus.users.signin.isSuccess = true;
+          prevState.fetchStatus.users.signin.isFailed = false;
 
-          Object.assign(prevState.user_active, payload);
+          prevState.user_active = payload;
         },
         rejected: (prevState, { payload }) => {
-          Object.assign(prevState.fetchStatus.users.signin, {
-            isLoading: false,
-            isSuccess: false,
-            isFailed: true,
-          });
+          prevState.fetchStatus.users.signin.isLoading = false;
+          prevState.fetchStatus.users.signin.isSuccess = false;
+          prevState.fetchStatus.users.signin.isFailed = true;
 
           prevState.errors.user = payload;
         },
       })
       .addAsyncThunk(userLogoutThunk, {
         pending: (prevState) => {
-          Object.assign(prevState.fetchStatus.users.signup, {
-            isLoading: false,
-            isSuccess: false,
-            isFailed: false,
-          });
-          Object.assign(prevState.fetchStatus.users.signin, {
-            isLoading: false,
-            isSuccess: false,
-            isFailed: false,
-          });
-          Object.assign(prevState.fetchStatus.users.logout, {
-            isLoading: true,
-            isSuccess: false,
-            isFailed: false,
-          });
+          prevState.fetchStatus.users.signup.isLoading = false;
+          prevState.fetchStatus.users.signup.isSuccess = false;
+          prevState.fetchStatus.users.signup.isFailed = false;
+
+          prevState.fetchStatus.users.signin.isLoading = false;
+          prevState.fetchStatus.users.signin.isSuccess = false;
+          prevState.fetchStatus.users.signin.isFailed = false;
+
+          prevState.fetchStatus.users.logout.isLoading = true;
+          prevState.fetchStatus.users.logout.isSuccess = false;
+          prevState.fetchStatus.users.logout.isFailed = false;
 
           prevState.errors.user = null;
         },
         fulfilled: (prevState) => {
-          Object.assign(prevState.fetchStatus.users.logout, {
-            isLoading: false,
-            isSuccess: true,
-            isFailed: false,
-          });
+          prevState.fetchStatus.users.logout.isLoading = false;
+          prevState.fetchStatus.users.logout.isSuccess = true;
+          prevState.fetchStatus.users.logout.isFailed = false;
 
           prevState.user_active = {};
         },
         rejected: (prevState, { payload }) => {
-          Object.assign(prevState.fetchStatus.users.logout, {
-            isLoading: false,
-            isSuccess: false,
-            isFailed: true,
-          });
+          prevState.fetchStatus.users.signup.isLoading = false;
+          prevState.fetchStatus.users.signup.isSuccess = false;
+          prevState.fetchStatus.users.signup.isFailed = true;
 
           prevState.errors.user = payload;
         },

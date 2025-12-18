@@ -11,14 +11,17 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import userReducer from "./slices/user.slice";
+import movieReducer from "./slices/movie.slice";
 
 const persistConfig = {
   key: "data",
   storage,
+  whitelist: ["user"],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
   user: userReducer,
+  movie: movieReducer,
 });
 
 const store = configureStore({

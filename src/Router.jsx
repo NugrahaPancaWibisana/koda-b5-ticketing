@@ -9,19 +9,30 @@ import AuthLayout from "./components/layouts/AuthLayout";
 export default function Router() {
   return (
     <Routes>
-      <Route path='/'>
+      <Route path="/">
         <Route element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path='movie'>
+          <Route path="movies">
             <Route index element={<MovieList />} />
+            <Route path=":id">
+              <Route path=":slug" element={<>coming soon</>} />
+            </Route>
           </Route>
         </Route>
 
         <Route element={<AuthLayout />}>
-          <Route path='signin' element={<SignIn />} />
-          <Route path='signup' element={<SignUp />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
         </Route>
       </Route>
+      <Route
+        path="*"
+        element={
+          <div className="flex h-dvh items-center justify-center text-5xl font-bold">
+            404 NOT FOUND
+          </div>
+        }
+      />
     </Routes>
   );
 }
