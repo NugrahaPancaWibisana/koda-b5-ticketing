@@ -5,6 +5,7 @@ import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import MovieList from "./pages/guest/MovieList";
 import AuthLayout from "./components/layouts/AuthLayout";
+import MovieDetail from "./pages/guest/MovieDetail";
 
 export default function Router() {
   return (
@@ -15,7 +16,7 @@ export default function Router() {
           <Route path="movies">
             <Route index element={<MovieList />} />
             <Route path=":id">
-              <Route path=":slug" element={<>coming soon</>} />
+              <Route path=":slug" element={<MovieDetail />} />
             </Route>
           </Route>
         </Route>

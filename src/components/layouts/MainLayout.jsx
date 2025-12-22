@@ -6,7 +6,7 @@ export default function MainLayout() {
   return (
     <>
       <Navbar />
-      <main className="font-mulish grid grid-cols-1 pt-[140px] md:pt-0">
+      <main className="font-mulish grid grid-cols-1">
         <Outlet />
       </main>
       <Footer />
