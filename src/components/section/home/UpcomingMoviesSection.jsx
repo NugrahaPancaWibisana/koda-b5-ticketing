@@ -1,19 +1,12 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import MovieCard from "../../ui/MovieCard";
-import { movieActions } from "../../../redux/slices/movie.slice";
+import SkeletonMovieCard from "../../ui/SkeletonMovieCard";
 
 export default function UpcomingMoviesSection() {
-  const movie = useSelector((state) => state.movie.movies);
-  const dispatch = useDispatch();
-  // const [activeIndex, setActiveIndex] = useState(null);
+  const movie = useSelector((state) => state.movie);
+  const [activeIndex, setActiveIndex] = useState(null);
   const [prev, setprev] = useState(0);
-
-  useEffect(() => {
-    dispatch(movieActions.getUpcoming());
-    // dispatch(movieActions.getMovieGenres());
-  }, [dispatch]);
 
   return (
     <section className="mt-20 flex flex-col items-start justify-start gap-10 text-center md:text-start">
@@ -55,7 +48,13 @@ export default function UpcomingMoviesSection() {
           </button>
           <button
             className="bg-primary rounded-full p-5"
-            onClick={() => setprev(prev === 16 ? 16 : prev + 4)}
+            onClick={() =>
+              setprev(
+                prev === movie.movies.upcoming.length - 4
+                  ? movie.movies.upcoming.length - 4
+                  : prev + 4,
+              )
+            }
           >
             <svg
               className="stroke-white"
@@ -82,39 +81,65 @@ export default function UpcomingMoviesSection() {
         </div>
       </div>
 
-      <div className="hidden w-full grid-cols-4 gap-5 md:grid">
-        {movie.upcoming.slice(prev, prev + 4).map((value, idx) => {
-          return (
-            <MovieCard
-              key={idx}
-              img={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
-              title={value.original_title}
-              genre={value.genre_ids.map(
-                (id) => movie.genres.find((v) => v.id === id)["name"],
-              )}
-              href={`movies/${value.id}/${value.original_title.toLowerCase().split(" ").join("-")}`}
-            />
-          );
-        })}
-      </div>
+      {movie.fetchStatus.upcoming.isLoading ? (
+        <>
+          <div className="hidden w-full grid-cols-4 gap-5 md:grid">
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+          </div>
 
-      <div className="no-scrollbar flex w-full snap-x gap-4 overflow-x-auto md:hidden">
-        {movie.upcoming.map((value, idx) => {
-          return (
-            <MovieCard
-              key={idx}
-              img={`https://image.tmdb.org/t/p/w500${value.poster_path}`}
-              title={value.original_title}
-              genre={value.genre_ids.map(
-                (id) => movie.genres.find((v) => v.id === id).name,
-              )}
-              href={`movies/${value.id}`}
-              // isActive={activeIndex === idx}
-              // onClick={() => setActiveIndex(activeIndex === idx ? null : idx)}
-            />
-          );
-        })}
-      </div>
+          <div className="no-scrollbar flex w-full snap-x gap-4 overflow-x-auto md:hidden">
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+            <SkeletonMovieCard date={true}></SkeletonMovieCard>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="hidden w-full grid-cols-4 gap-5 md:grid">
+            {movie.movies.upcoming.slice(prev, prev + 4).map((value, idx) => {
+              return (
+                <MovieCard
+                  key={idx}
+                  data={{
+                    img: `https://image.tmdb.org/t/p/w500${value.poster_path}`,
+                    title: value.original_title,
+                    date: value.release_date,
+                    genre: value.genre_ids.map((id) =>
+                      movie.movies.genres.find((v) => v.id === id),
+                    ),
+                    href: `movies/${value.id}/${value.original_title.toLowerCase().split(" ").join("-")}`,
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          <div className="no-scrollbar flex w-full snap-x gap-4 overflow-x-auto md:hidden">
+            {movie.movies.upcoming.map((value, idx) => {
+              return (
+                <MovieCard
+                  key={idx}
+                  data={{
+                    img: `https://image.tmdb.org/t/p/w500${value.poster_path}`,
+                    title: value.original_title,
+                    genre: value.genre_ids.map((id) =>
+                      movie.movies.genres.find((v) => v.id === id),
+                    ),
+                    href: `movies/${value.id}/${value.original_title.toLowerCase().split(" ").join("-")}`,
+                    isActive: activeIndex === idx,
+                    onClick: () =>
+                      setActiveIndex(activeIndex === idx ? null : idx),
+                  }}
+                />
+              );
+            })}
+          </div>
+        </>
+      )}
     </section>
   );
 }
